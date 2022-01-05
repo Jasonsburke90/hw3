@@ -90,15 +90,61 @@ function generatePassword() {
   let pwLength = prompt(
     "How long should the password be? (Length must be between 8 and 128 characters)"
   );
-  // todo add if/else for if password is within the correct parameters or not
+  //if/else for if password is within the correct parameters or not
+
   // define password array
   let password = [];
-  // create characters array from chosen arrays  (add code to pull specific arrays with y/n prompts)
+  // create characters array from chosen arrays via prompts
   let characters = [];
-  characters.push(lcLetters);
-  characters.push(ucLetters);
-  characters.push(numbers);
-  characters.push(specialChars);
+  // lowercase prompt
+  let lcChoice = prompt(
+    "Do you wish to include lowercase letters in the password? (y/n)"
+  );
+  lcChoice = lcChoice.toLowerCase();
+  if (lcChoice === "y") {
+    characters.push(lcLetters);
+  } else if (lcChoice !== "n") {
+    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+    return;
+  }
+  // uppercase prompt
+  let ucChoice = prompt(
+    "Do you wish to include uppercase letters in the password? (y/n)"
+  );
+  ucChoice = ucChoice.toLowerCase();
+  if (ucChoice === "y") {
+    characters.push(ucLetters);
+  } else if (ucChoice !== "n") {
+    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+    return;
+  }
+
+  // numbers prompt
+
+  let numChoice = prompt(
+    "Do you wish to include uppercase letters in the password? (y/n)"
+  );
+  numChoice = numChoice.toLowerCase();
+  if (numChoice === "y") {
+    characters.push(numbers);
+  } else if (numChoice !== "n") {
+    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+    return;
+  }
+
+  // special chars prompt
+
+  let scChoice = prompt(
+    "Do you wish to include lowercase letters in the password? (y/n)"
+  );
+  scChoice = scChoice.toLowerCase();
+  if (scChoice === "y") {
+    characters.push(specialChars);
+  } else if (scChoice !== "n") {
+    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+    return;
+  }
+
   console.log(characters);
   // merge the separate arrays added to the characters array into one
   let mergedChars = [].concat.apply([], characters);
