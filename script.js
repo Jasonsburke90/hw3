@@ -86,23 +86,33 @@ let specialChars = [
 // generatePassword
 // return a final password as a string
 function generatePassword() {
-  // 1. assign a variable to the length of the password
+  // assign variable to the length of the password
   let pwLength = prompt(
     "How long should the password be? (Length must be between 8 and 128 characters)"
   );
+  // todo add if/else for if password is within the correct parameters or not
+  // define password array
   let password = [];
-  // 1a. create a password with that length
-  // 1c. loop through array of letters
+  // create characters array from chosen arrays  (add code to pull specific arrays with y/n prompts)
+  let characters = [];
+  characters.push(lcLetters);
+  characters.push(ucLetters);
+  characters.push(numbers);
+  characters.push(specialChars);
+  console.log(characters);
+  // merge the separate arrays added to the characters array into one
+  let mergedChars = [].concat.apply([], characters);
+  console.log(mergedChars);
+  // create a random password from the merged characters array
+  // loop through the array based on length
   for (let i = 0; i < pwLength; i++) {
-    // 1d. push each letter array into password array
-    password.push(lcLetters[i]);
+    // randomize formula
+    let random = Math.floor(Math.random() * mergedChars.length);
+    // push the random mergedChars array item to the password array
+    password.push(mergedChars[random]);
   }
 
-  // 1e. create a random 10 letter password
-  let random = Math.floor(Math.random() * password.length);
-  console.log(random, password[random]);
-
-  // 1f. convert password array back to string
+  // convert password array back to string
   return password.join("");
 }
 
