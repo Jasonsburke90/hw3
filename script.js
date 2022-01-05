@@ -90,78 +90,85 @@ function generatePassword() {
   let pwLength = prompt(
     "How long should the password be? (Length must be between 8 and 128 characters)"
   );
-  //if/else for if password is within the correct parameters or not
+  //if/else for if password is within the correct parameters or not (else is further down)
+  if (8 <= pwLength && pwLength <= 128) {
+    // define password array
+    let password = [];
+    // create characters array from chosen arrays via prompts
+    let characters = [];
+    // lowercase prompt
+    let lcChoice = prompt(
+      "Do you wish to include lowercase letters in the password? (y/n)"
+    );
+    lcChoice = lcChoice.toLowerCase();
+    if (lcChoice === "y") {
+      characters.push(lcLetters);
+    } else if (lcChoice !== "n") {
+      alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+      return;
+    }
+    // uppercase prompt
+    let ucChoice = prompt(
+      "Do you wish to include uppercase letters in the password? (y/n)"
+    );
+    ucChoice = ucChoice.toLowerCase();
+    if (ucChoice === "y") {
+      characters.push(ucLetters);
+    } else if (ucChoice !== "n") {
+      alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+      return;
+    }
 
-  // define password array
-  let password = [];
-  // create characters array from chosen arrays via prompts
-  let characters = [];
-  // lowercase prompt
-  let lcChoice = prompt(
-    "Do you wish to include lowercase letters in the password? (y/n)"
-  );
-  lcChoice = lcChoice.toLowerCase();
-  if (lcChoice === "y") {
-    characters.push(lcLetters);
-  } else if (lcChoice !== "n") {
-    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+    // numbers prompt
+
+    let numChoice = prompt(
+      "Do you wish to include uppercase letters in the password? (y/n)"
+    );
+    numChoice = numChoice.toLowerCase();
+    if (numChoice === "y") {
+      characters.push(numbers);
+    } else if (numChoice !== "n") {
+      alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+      return;
+    }
+
+    // special chars prompt
+
+    let scChoice = prompt(
+      "Do you wish to include lowercase letters in the password? (y/n)"
+    );
+    scChoice = scChoice.toLowerCase();
+    if (scChoice === "y") {
+      characters.push(specialChars);
+    } else if (scChoice !== "n") {
+      alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
+      return;
+    }
+
+    console.log(characters);
+    // merge the separate arrays added to the characters array into one
+    let mergedChars = [].concat.apply([], characters);
+    console.log(mergedChars);
+    // create a random password from the merged characters array
+    // loop through the array based on length
+    for (let i = 0; i < pwLength; i++) {
+      // randomize formula
+      let random = Math.floor(Math.random() * mergedChars.length);
+      // push the random mergedChars array item to the password array
+      password.push(mergedChars[random]);
+    }
+
+    // convert password array back to string
+    return password.join("");
+  }
+  // if password is not the correct length, end the program
+  else {
+    alert(
+      "Invalid entry.  Please enter a number between 8 and 128.  Restarting"
+    );
     return;
   }
-  // uppercase prompt
-  let ucChoice = prompt(
-    "Do you wish to include uppercase letters in the password? (y/n)"
-  );
-  ucChoice = ucChoice.toLowerCase();
-  if (ucChoice === "y") {
-    characters.push(ucLetters);
-  } else if (ucChoice !== "n") {
-    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
-    return;
-  }
-
-  // numbers prompt
-
-  let numChoice = prompt(
-    "Do you wish to include uppercase letters in the password? (y/n)"
-  );
-  numChoice = numChoice.toLowerCase();
-  if (numChoice === "y") {
-    characters.push(numbers);
-  } else if (numChoice !== "n") {
-    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
-    return;
-  }
-
-  // special chars prompt
-
-  let scChoice = prompt(
-    "Do you wish to include lowercase letters in the password? (y/n)"
-  );
-  scChoice = scChoice.toLowerCase();
-  if (scChoice === "y") {
-    characters.push(specialChars);
-  } else if (scChoice !== "n") {
-    alert("Invalid user entry. Please enter a letter y or n.  Restarting.");
-    return;
-  }
-
-  console.log(characters);
-  // merge the separate arrays added to the characters array into one
-  let mergedChars = [].concat.apply([], characters);
-  console.log(mergedChars);
-  // create a random password from the merged characters array
-  // loop through the array based on length
-  for (let i = 0; i < pwLength; i++) {
-    // randomize formula
-    let random = Math.floor(Math.random() * mergedChars.length);
-    // push the random mergedChars array item to the password array
-    password.push(mergedChars[random]);
-  }
-
-  // convert password array back to string
-  return password.join("");
 }
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
