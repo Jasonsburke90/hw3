@@ -122,7 +122,7 @@ function generatePassword() {
     // numbers prompt
 
     let numChoice = prompt(
-      "Do you wish to include uppercase letters in the password? (y/n)"
+      "Do you wish to include numbers in the password? (y/n)"
     );
     numChoice = numChoice.toLowerCase();
     if (numChoice === "y") {
@@ -135,7 +135,7 @@ function generatePassword() {
     // special chars prompt
 
     let scChoice = prompt(
-      "Do you wish to include lowercase letters in the password? (y/n)"
+      "Do you wish to include special characters in the password? (y/n)"
     );
     scChoice = scChoice.toLowerCase();
     if (scChoice === "y") {
